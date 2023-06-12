@@ -27,7 +27,9 @@ SECRET_KEY = 'django-insecure-2r#aw*gd*!)%y=#t(*8x-7q1*yxsiifigwyrb3l5kzf)cd#3&r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'https://lantern.khoj.dev'
+]
 
 
 # Application definition
@@ -60,6 +62,11 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://khoj.dev",
 ]
+
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+    'https://khoj.dev',
+)
 
 ROOT_URLCONF = 'app.urls'
 
