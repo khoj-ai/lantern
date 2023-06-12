@@ -65,6 +65,8 @@ CORS_ORIGIN_WHITELIST = (
     'https://khoj.dev',
 )
 
+CSRF_TRUSTED_ORIGINS = ['https://lantern.khoj.dev','https://*.127.0.0.1']
+
 ROOT_URLCONF = 'app.urls'
 
 TEMPLATES = [
