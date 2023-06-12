@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-2r#aw*gd*!)%y=#t(*8x-7q1*yxsiifigwyrb3l5kzf)cd#3&r
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'https://lantern.khoj.dev'
+    '*.lantern.khoj.dev'
 ]
 
 
