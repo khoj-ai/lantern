@@ -2,6 +2,9 @@
 
 Lantern is a Django application for managing application-level services for Khoj.
 
+## Development
+You should have Docker and Docker Compose installed on your system for quickest setup.
+
 ## Run locally
 ```bash
 python3 -m venv .venv
