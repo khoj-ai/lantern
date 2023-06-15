@@ -1,4 +1,5 @@
 # Lantern
+
 Lantern is a Django application for managing application-level services for Khoj.
 
 ## Development
