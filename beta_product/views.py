@@ -1,26 +1,23 @@
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import generics
 
 from .models import UserInterest, InterestFields
 from .serializer import UserInterestSerializer
 
 from django.contrib.auth.models import User
 
-class UserInterestListApiView(APIView):
-
-    def get(self, request):
-        user_interests = UserInterest.objects.all()
-        serializer = UserInterestSerializer(user_interests, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+class UserInterestListApiView(generics.CreateAPIView):
 
     def post(self, request):
         data = request.data
+        
         if 'interest' not in data:
-            return Response({'error': 'interest is required'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'interest is required'}, status=status.HTTP_400_BAD_REQUEST, content_type='application/json')
+        
         interest = data['interest']
         if interest not in [field[0] for field in InterestFields.choices]:
-            return Response({'error': 'interest is invalid'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'interest is invalid'}, status=status.HTTP_400_BAD_REQUEST, content_type='application/json')
 
         email = data.get('email', None)
         if email is None:
@@ -28,6 +25,13 @@ class UserInterestListApiView(APIView):
 
         if User.objects.filter(email=email).exists():
             user = User.objects.get(email=email)
+            existing_interest = UserInterest.objects.filter(user=user)
+            if existing_interest.exists():
+                existing_interest = existing_interest.get()
+                existing_interest.field = interest
+                existing_interest.save()
+                serializer = UserInterestSerializer(existing_interest)
+                return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             user = User.objects.create_user(username=email, email=email)
 

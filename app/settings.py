@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'beta_product',
+    'user_manager',
     'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -64,6 +66,14 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
     'https://khoj.dev',
 )
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
 
 CSRF_TRUSTED_ORIGINS = ['https://lantern.khoj.dev','https://*.127.0.0.1']
 

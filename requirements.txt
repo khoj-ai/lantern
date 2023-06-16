@@ -6,3 +6,6 @@ psycopg2-binary==2.9.6
 pytz==2023.3
 sqlparse==0.4.4
 typing_extensions==4.6.3
+django-timestampedmodel==0.1.0
+factory-boy==3.2.1
+Faker==18.10.1
