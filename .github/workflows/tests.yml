@@ -10,19 +10,29 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  test:
     name: Build and Test
     runs-on: ubuntu-latest
     permissions:
         packages: write
+    services:
+      db:
+        image: postgres:13.3
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.3.0
 
       - name: Set up Python 3.10
         uses: actions/setup-python@v2
         with:
-          python-version: 3.10
+          python-version: '3.10'
 
       - name: Install dependencies from requirements.txt
         run: |
