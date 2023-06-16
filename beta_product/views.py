@@ -6,6 +6,7 @@ from .models import UserInterest, InterestFields
 from .serializer import UserInterestSerializer
 
 from django.contrib.auth.models import User
+import uuid
 
 
 class UserInterestListApiView(generics.CreateAPIView):
@@ -39,12 +40,16 @@ class UserInterestListApiView(generics.CreateAPIView):
             if existing_interest.exists():
                 existing_interest = existing_interest.get()
                 existing_interest.field = interest
+                if existing_interest.unique_identifier is None:
+                    existing_interest.unique_identifier = uuid.uuid4()
                 existing_interest.save()
                 serializer = UserInterestSerializer(existing_interest)
                 return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             user = User.objects.create_user(username=email, email=email)
 
-        user_interest = UserInterest.objects.create(user=user, field=interest)
+        user_interest = UserInterest.objects.create(
+            user=user, field=interest, unique_identifier=uuid.uuid4()
+        )
         serializer = UserInterestSerializer(user_interest)
         return Response(serializer.data, status=status.HTTP_201_CREATED)

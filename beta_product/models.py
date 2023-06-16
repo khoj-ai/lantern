@@ -28,3 +28,6 @@ class UserInterest(TimestampedModel):
         max_length=20, choices=InterestFields.choices, default=InterestFields.OTHER
     )
     waitlist = models.BooleanField(default=True)
+    unique_identifier = models.CharField(
+        max_length=100, default=None, unique=True, null=True, blank=True
+    )

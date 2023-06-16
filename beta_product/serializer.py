@@ -5,4 +5,4 @@ from .models import UserInterest
 class UserInterestSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserInterest
-        fields = ["id", "user", "field"]
+        fields = ["id", "user", "field", "waitlist", "unique_identifier"]
