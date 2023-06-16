@@ -7,21 +7,31 @@ from .serializer import UserInterestSerializer
 
 from django.contrib.auth.models import User
 
-class UserInterestListApiView(generics.CreateAPIView):
 
+class UserInterestListApiView(generics.CreateAPIView):
     def post(self, request):
         data = request.data
-        
-        if 'interest' not in data:
-            return Response({'error': 'interest is required'}, status=status.HTTP_400_BAD_REQUEST, content_type='application/json')
-        
-        interest = data['interest']
-        if interest not in [field[0] for field in InterestFields.choices]:
-            return Response({'error': 'interest is invalid'}, status=status.HTTP_400_BAD_REQUEST, content_type='application/json')
 
-        email = data.get('email', None)
+        if "interest" not in data:
+            return Response(
+                {"error": "interest is required"},
+                status=status.HTTP_400_BAD_REQUEST,
+                content_type="application/json",
+            )
+
+        interest = data["interest"]
+        if interest not in [field[0] for field in InterestFields.choices]:
+            return Response(
+                {"error": "interest is invalid"},
+                status=status.HTTP_400_BAD_REQUEST,
+                content_type="application/json",
+            )
+
+        email = data.get("email", None)
         if email is None:
-            return Response({'error': 'email is required'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"error": "email is required"}, status=status.HTTP_400_BAD_REQUEST
+            )
 
         if User.objects.filter(email=email).exists():
             user = User.objects.get(email=email)
