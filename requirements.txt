@@ -9,3 +9,4 @@ typing_extensions==4.6.3
 django-timestampedmodel==0.1.0
 factory-boy==3.2.1
 Faker==18.10.1
+python-dotenv

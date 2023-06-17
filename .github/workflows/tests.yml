@@ -44,5 +44,7 @@ jobs:
           python manage.py migrate
 
       - name: Run Django Tests
+        env:
+          DJANGO_SECRET_KEY: django-insecure-key-for-testing
         run: |
           python manage.py test

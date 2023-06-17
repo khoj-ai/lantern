@@ -13,5 +13,10 @@ WORKDIR /code
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
+# Set Environment Variables
+RUN --mount=type=secret,id=DJANGO_SECRET_KEY \
+  export DJANGO_SECRET_KEY=$(cat /run/secrets/DJANGO_SECRET_KEY) && \
+  echo "DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY" > .env
+
 # Copy project
 COPY . .
