@@ -1,8 +1,6 @@
 from django.urls import path
-from .views import (
-    UserInterestListApiView,
-)
+from beta_product import views
 
 urlpatterns = [
-    path('users/', UserInterestListApiView.as_view()),
+    path("users/", views.UserInterestListApiView.as_view()),
 ]

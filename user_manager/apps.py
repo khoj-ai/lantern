@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class BetaProductConfig(AppConfig):
+class UserManagerConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "beta_product"
+    name = "user_manager"
