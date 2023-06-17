@@ -36,3 +36,4 @@ jobs:
           tags: ghcr.io/${{ github.repository }}:${{ env.DOCKER_IMAGE_TAG }}
           secrets: |
             "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}"
+            "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}"
