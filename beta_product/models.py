@@ -25,7 +25,11 @@ class UserInterest(TimestampedModel):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="interests")
     field = models.CharField(
-        max_length=20, choices=InterestFields.choices, default=InterestFields.OTHER
+        max_length=20,
+        choices=InterestFields.choices,
+        default=None,
+        null=True,
+        blank=True,
     )
     waitlist = models.BooleanField(default=True)
     unique_identifier = models.CharField(
