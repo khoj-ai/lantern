@@ -22,12 +22,16 @@ PROJECT_ROOT = os.path.dirname(__file__)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
+DEBUG = os.getenv("DJANGO_DEBUG") == "True"
+
+if DEBUG:
+    load_dotenv(BASE_DIR / ".env.dev")
+else:
+    load_dotenv()
+
 # SECURITY WARNING: keep the secret key used in production secret!
-load_dotenv()
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = ["lantern.khoj.dev", "localhost"]
 

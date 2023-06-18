@@ -12,6 +12,7 @@ services:
     build: .
     environment:
       - POSTGRES_HOST=lantern-db
+      - DJANGO_DEBUG=True
     ports:
       - "5000:5000"
     volumes:
