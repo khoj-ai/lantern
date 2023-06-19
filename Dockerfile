@@ -24,3 +24,4 @@ RUN --mount=type=secret,id=POSTGRES_PASSWORD \
 
 # Copy project
 COPY . .
+RUN python manage.py collectstatic --noinput
