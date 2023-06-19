@@ -1,3 +1,14 @@
 from django.contrib import admin
+from khoj_service.models import RoutingTable
 
-# Register your models here.
+
+@admin.register(RoutingTable)
+class RoutingTableAdmin(admin.ModelAdmin):
+    user = RoutingTable.user
+    url = RoutingTable.url
+    list_display = ("user", "url")
+    list_filter = ("user", "url")
+    search_fields = ("user", "url")
+    ordering = ("user", "url")
+    readonly_fields = ("user", "url")
+    fieldsets = ((None, {"fields": ("user", "url")}),)
