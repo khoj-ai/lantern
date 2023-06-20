@@ -26,7 +26,7 @@ class DefaultRedirectApiView(APIView):
         return HttpResponse(khoj_response)
 
 
-class RedirectToKhojStaticAssets(APIView):
+class RedirectToKhojAncilliaryAssets(APIView):
     permission_classes = [IsAuthenticated]
     routing_table = RoutingTable.objects.all()
 
@@ -39,7 +39,6 @@ class RedirectToKhojStaticAssets(APIView):
                 {"error": "user does not have a service with Khoj"},
                 status=status.HTTP_404_NOT_FOUND,
             )
-        request_path = request_path[5:]
         khoj_response = requests.get(f"{service_url}{request_path}")
         content_type = khoj_response.headers.get("Content-Type")
         return HttpResponse(khoj_response, content_type=content_type)

@@ -20,15 +20,10 @@ from rest_framework.authtoken import views
 from django.urls import re_path
 
 urlpatterns = [
-    path("khoj/", include("khoj_service.urls"), name="khoj_service"),
-    re_path(
-        r"^khoj/static/.*",
-        include("khoj_service.static_urls"),
-        name="khoj_service_static",
-    ),
-    re_path(r"^api/.*", include("khoj_service.api_urls"), name="khoj_service_api"),
     path("admin/", admin.site.urls),
     path("beta/", include("beta_product.urls")),
     path("auth/", include("user_manager.urls")),
     path("token/", views.obtain_auth_token, name="token"),
+    re_path(r"^api/.*", include("khoj_service.api_urls"), name="khoj_service_api"),
+    path("", include("khoj_service.urls"), name="khoj_service"),
 ]
