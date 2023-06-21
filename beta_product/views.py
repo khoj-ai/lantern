@@ -7,6 +7,9 @@ from .serializer import UserInterestSerializer
 
 from django.contrib.auth.models import User
 import uuid
+from django.shortcuts import redirect
+import requests
+from django.http import HttpResponse
 
 
 class UserInterestListApiView(APIView):
