@@ -3,6 +3,7 @@ import factory
 from django.urls import reverse
 from django.contrib.auth.models import User
 from user_manager.models import UserMetadata
+from rest_framework.test import APITestCase, APIClient
 
 
 class UserFactory(factory.django.DjangoModelFactory):
@@ -117,3 +118,51 @@ class UserTokenTests(APITestCase):
         )
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data["username"], "fake@fake.com")
+
+
+class UserLoginTests(APITestCase):
+    def test_login(self):
+        data = {
+            "email": "hi@test.com",
+            "password": "h4rryP0tt3r!",
+        }
+
+        User.objects.create_user(
+            username=data["email"], email=data["email"], password=data["password"]
+        )
+
+        response = self.client.post("/auth/login/", data)
+        self.assertEqual(response.status_code, 200)
+
+    def test_login_invalid_credentials(self):
+        data = {
+            "email": "hi@test.com",
+            "password": "h4rryP0tt3r!",
+        }
+
+        User.objects.create_user(
+            username=data["email"], email=data["email"], password=data["password"]
+        )
+
+        response = self.client.post(
+            "/auth/login/", {"email": data["email"], "password": "wrongpassword"}
+        )
+        self.assertEqual(response.status_code, 404)
+
+
+class CheckValidCredentialsTests(APITestCase):
+    def test_check_valid_credentials(self):
+        data = {
+            "email": "hi@test.com",
+            "password": "h4rryP0tt3r!",
+        }
+
+        user = User.objects.create_user(
+            username=data["email"], email=data["email"], password=data["password"]
+        )
+
+        # Check that the user in the request is authenticated
+        client = APIClient()
+        client.force_authenticate(user=user)
+        response = client.get("/auth/check/")
+        self.assertEqual(response.status_code, 200)
