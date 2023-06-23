@@ -75,6 +75,8 @@ CORS_ORIGIN_WHITELIST = (
     "https://khoj.dev",
 )
 
+CORS_ALLOW_CREDENTIALS = True
+
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.BasicAuthentication",
@@ -83,7 +85,11 @@ REST_FRAMEWORK = {
     ]
 }
 
-CSRF_TRUSTED_ORIGINS = ["https://lantern.khoj.dev", "https://*.127.0.0.1"]
+CSRF_TRUSTED_ORIGINS = [
+    "https://lantern.khoj.dev",
+    "http://*.127.0.0.1",
+    "http://localhost:3000",
+]
 
 ROOT_URLCONF = "app.urls"
 
