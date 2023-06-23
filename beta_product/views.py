@@ -66,12 +66,10 @@ class InvitedUserSetPassword(APIView):
         ).exists():
             return Response({}, status=status.HTTP_404_NOT_FOUND)
 
-        user_interest = UserInterest.objects.get(unique_identifier=unique_identifier)
-        user = user_interest.user
+        user = UserInterest.objects.get(unique_identifier=unique_identifier).user
         if user.has_usable_password():
             return Response({}, status=status.HTTP_410_GONE)
-        data = request.data
-        password = data.get("password", None)
+        password = request.data.get("password", None)
         if password is None:
             return Response(
                 {"error": "password is required"},
