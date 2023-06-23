@@ -89,6 +89,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://lantern.khoj.dev",
     "http://*.127.0.0.1",
     "http://localhost:3000",
+    "https://khoj.dev",
 ]
 
 ROOT_URLCONF = "app.urls"
