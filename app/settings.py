@@ -97,7 +97,7 @@ COOKIE_SAMESITE = "None"
 if DEBUG:
     SESSION_COOKIE_DOMAIN = "localhost"
 else:
-    SESSION_COOKIE_DOMAIN = ".khoj.dev"
+    SESSION_COOKIE_DOMAIN = "khoj.dev"
 
 ROOT_URLCONF = "app.urls"
 
