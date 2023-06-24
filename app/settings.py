@@ -92,6 +92,8 @@ CSRF_TRUSTED_ORIGINS = [
     "https://khoj.dev",
 ]
 
+COOKIE_SAMESITE = "None"
+
 ROOT_URLCONF = "app.urls"
 
 TEMPLATES = [
