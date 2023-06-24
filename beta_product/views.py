@@ -7,7 +7,6 @@ from .serializer import UserInterestSerializer
 
 from django.contrib.auth.models import User
 import uuid
-from django.http import HttpResponse
 from django.contrib.auth.password_validation import validate_password
 
 
