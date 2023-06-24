@@ -10,5 +10,4 @@ class RoutingTableAdmin(admin.ModelAdmin):
     list_filter = ("user", "url")
     search_fields = ("user", "url")
     ordering = ("user", "url")
-    readonly_fields = ("user", "url")
     fieldsets = ((None, {"fields": ("user", "url")}),)
