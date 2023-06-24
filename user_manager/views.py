@@ -6,7 +6,6 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework import generics
 from django.contrib.auth import authenticate, login, logout
 from rest_framework import status
-from django.views.decorators.csrf import ensure_csrf_cookie
 
 
 # Class based view to get user details using Django Token Authentication
@@ -32,7 +31,6 @@ class CheckValidCredentials(APIView):
 class UserLoginView(APIView):
     permission_classes = [AllowAny]
 
-    @ensure_csrf_cookie
     def post(self, request):
         if request.user.is_authenticated:
             return Response({}, status=status.HTTP_200_OK)
