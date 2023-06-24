@@ -25,6 +25,21 @@ class DefaultRedirectApiView(APIView):
         khoj_response = requests.get(f"{service_url}{request_path}")
         return HttpResponse(khoj_response)
 
+    def post(self, request):
+        user = request.user
+        request_path = request.get_full_path()
+        service_url = self.routing_table.get_service_url_by_user(user)
+        if service_url is None:
+            return Response(
+                {"error": "user does not have a service with Khoj"},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+        body = request.body
+
+        khoj_response = requests.post(f"{service_url}{request_path}", data=body)
+        return HttpResponse(khoj_response)
+
 
 class RedirectToKhojAncilliaryAssets(APIView):
     permission_classes = [IsAuthenticated]
