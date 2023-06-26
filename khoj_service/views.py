@@ -35,9 +35,10 @@ class DefaultRedirectApiView(APIView):
                 status=status.HTTP_404_NOT_FOUND,
             )
 
-        body = request.body
-
-        khoj_response = requests.post(f"{service_url}{request_path}", data=body)
+        body = request.data
+        khoj_response = requests.post(
+            f"{service_url}{request_path}", json=body, headers=request.headers
+        )
         return HttpResponse(khoj_response)
 
 
