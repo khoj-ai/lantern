@@ -71,14 +71,16 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "https://*.khoj.dev",
     "https://khoj.dev",
+    "https://faq.khoj.dev",
+    "https://*.khoj.dev",
 ]
 
 CORS_ORIGIN_WHITELIST = (
     "http://localhost:3000",
-    "https://*.khoj.dev",
     "https://khoj.dev",
+    "https://faq.khoj.dev",
+    "https://*.khoj.dev",
 )
 
 CORS_ALLOW_CREDENTIALS = True
@@ -98,6 +100,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "https://khoj.dev",
     "https://*.khoj.dev",
+    "https://faq.khoj.dev",
 ]
 
 COOKIE_SAMESITE = "None"
