@@ -16,6 +16,6 @@ capture_output = True
 # PID file so you can easily fetch process ID
 pidfile = "config/gunicorn/prod.pid"
 # Daemonize the Gunicorn process (detach & enter background)
-daemon = True
+daemon = False
 # The granularity of Error log outputs
 loglevel = "debug"
