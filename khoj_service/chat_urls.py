@@ -3,5 +3,5 @@ from khoj_service import views
 
 
 urlpatterns = [
-    path("", views.DefaultRedirectApiView.as_view()),
+    path("", views.StreamingApiView.as_view()),
 ]
