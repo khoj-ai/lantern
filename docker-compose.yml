@@ -17,7 +17,7 @@ services:
       - "5000:5000"
     volumes:
       - .:/code
-    command: python manage.py runserver 0.0.0.0:5000
+    command: gunicorn -c config/gunicorn/dev.py
     depends_on:
       - lantern-db
 volumes:
