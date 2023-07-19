@@ -41,7 +41,13 @@ createuser -s postgres
 
 ### Start the service
 ```bash
-python manage.py runserver 0.0.0.0:5000
+gunicorn -c config/gunicorn/dev.py
+```
+
+### Kill the service
+If you started the process in daemon mode, you can get the pid in the `.pid` file under `config/gunicorn`. Then run:
+```bash
+kill -9 <pid>
 ```
 
 ## Build Docker Image
