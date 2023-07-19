@@ -36,7 +36,7 @@ else:
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 
-ALLOWED_HOSTS = ["lantern.khoj.dev", "localhost"]
+ALLOWED_HOSTS = ["app.khoj.dev", "localhost"]
 
 # Application definition
 
@@ -95,7 +95,7 @@ REST_FRAMEWORK = {
 }
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://lantern.khoj.dev",
+    "https://app.khoj.dev",
     "http://*.127.0.0.1",
     "http://localhost:3000",
     "https://khoj.dev",
