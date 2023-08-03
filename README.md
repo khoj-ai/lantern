@@ -41,8 +41,7 @@ createuser -s postgres
 
 Create database
 ```bash
-psql -U postgres
-createdb lantern
+createdb lantern -U postgres
 ```
 
 ### Start the service
