@@ -39,6 +39,12 @@ Create role
 createuser -s postgres
 ```
 
+Create database
+```bash
+psql -U postgres
+createdb lantern
+```
+
 ### Start the service
 ```bash
 gunicorn -c config/gunicorn/dev.py
